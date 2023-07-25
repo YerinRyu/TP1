@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Main Page </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+    <div class="mb-3">
+      <button type="button" onClick="location.href='training'"> training </button>
+      <button type="button" onClick="location.href='regression'"> regression </button>
+      <button type="button" onClick="location.href='binary'"> binary classification </button>
+      <button type="button" onClick="location.href='multi'"> multi calssification </button>
+    </div>
+  </body>

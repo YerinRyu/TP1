@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Binary Classification </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+    <div class="mb-3">
+        <!-- 
+          col1: Mean of the integrated profile
+          col2: Standard deviation of the integrated profile
+          col3: Excess kurtosis of the integrated profile
+          col4: Skewness of the integrated profile
+          col5: Mean of the DM-SNR curve
+          col6: Standard deviation of the DM-SNR curve
+          col7: Excess kurtosis of the DM-SNR curve
+          col8: Skewness of the DM-SNR curve
+        -->
+
+        <form action="{{ url_for('binary.result') }}" method="post">
+            Mean of the integrated profile : <input type="number" name="col1"><br>
+            Standard deviation of the integrated profile : <input type="number" name="col2"><br>
+            Excess kurtosis of the integrated profile : <input type="number" name="col3"><br>
+            Skewness of the integrated profile : <input type="number" name="col4"><br>
+            Mean of the DM-SNR curve : <input type="number" name="col5"><br>
+            Standard deviation of the DM-SNR curve : <input type="number" name="col6"><br>
+            Excess kurtosis of the DM-SNR curve : <input type="number" name="col7"><br>
+            Skewness of the DM-SNR curve : <input type="number" name="col8"><br>
+            <input type = "submit" value = "submit" onClick="location.href='./result'">
+        </form>
+    </div>
+    <!--
+    <div class = "submit">
+        <button
+          type="button" onClick="location.href='./result'"> submit
+        </button>
+    </div>  -->
+
+  </body>
+
+  
