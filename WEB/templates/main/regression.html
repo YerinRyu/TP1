@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Regression </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+    <div class="mb-3">
+        <!-- 
+        Sex: col1
+        Length: col2
+        Diameter: col3
+        Height: col4
+        Whole weight: col5
+        Shucked weight: col6
+        Viscera weight: col7
+        Shell weight: col8
+        -->
+
+        <form action="{{ url_for('regression.result') }}" method="post">
+            Sex: <select name="col1">
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                    <option value="I">I</option>
+                </select><br>
+            Length: <input type="number" name="col2"><br>
+            Diameter: <input type="number" name="col3"><br>
+            Height: <input type="number" name="col4"><br>
+            Whole weight: <input type="number" name="col5"><br>
+            Shucked weight: <input type="number" name="col6"><br>
+            Viscera weight: <input type="number" name="col7"><br>
+            Shell weight: <input type="number" name="col8"><br>
+            
+        </form>
+    </div>
+
+    <div class = "submit">
+        <button
+          type="button" onClick="location.href='./result'"> submit
+        </button>
+    </div>
+
+  </body>

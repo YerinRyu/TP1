@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Multi Classification </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+    <div class="mb-3">
+        <!-- 
+            col1: X_Minimum
+            col2: X_Maximum
+            col3: Y_Minimum
+            col4: Y_Maximum
+            col5: Pixels_Areas
+            col6: X_Perimeter
+            col7: Y_Perimeter
+            col8: Sum_of_Luminosity
+            col9: Minimum_of_Luminosity
+            col10: Maximum_of_Luminosity
+            col11: Length_of_Conveyer
+            col12: TypeOfSteel_A300
+            col13: TypeOfSteel_A400
+            col14: Steel_Plate_Thickness
+            col15: Edges_Index
+            col16: Empty_Index
+            col17: Square_Index
+            col18: Outside_X_Index
+            col19: Edges_X_Index
+            col20: Edges_Y_Index
+            col21: Outside_Global_Index
+            col22: LogOfAreas
+            col23: Log_X_Index
+            col24: Log_Y_Index
+            col25: Orientation_Index
+            col26: Luminosity_Index
+            col27: SigmoidOfAreas
+        -->
+
+        <form action="{{ url_for('multi.result') }}" method="post">
+            X_Minimum: <input type="number" name="col1"><br>
+            X_Maximum: <input type="number" name="col2"><br>
+            Y_Minimum: <input type="number" name="col3"><br>
+            Y_Maximum: <input type="number" name="col4"><br>
+            Pixels_Areas: <input type="number" name="col5"><br>
+            X_Perimeter: <input type="number" name="col6"><br>
+            Y_Perimeter: <input type="number" name="col7"><br>
+            Sum_of_Luminosity: <input type="number" name="col8"><br>
+            Minimum_of_Luminosity: <input type="number" name="col9"><br>
+            Maximum_of_Luminosity: <input type="number" name="col10"><br>
+            Length_of_Conveyer: <input type="number" name="col11"><br>
+            TypeOfSteel_A300: <input type="number" name="col12"><br>
+            TypeOfSteel_A400: <input type="number" name="col13"><br>
+            Steel_Plate_Thickness: <input type="number" name="col14"><br>
+            Edges_Index: <input type="number" name="col15"><br>
+            Empty_Index: <input type="number" name="col16"><br>
+            Square_Index: <input type="number" name="col17"><br>
+            Outside_X_Index: <input type="number" name="col18"><br>
+            Edges_X_Index: <input type="number" name="col19"><br>
+            Edges_Y_Index: <input type="number" name="col20"><br>
+            Outside_Global_Index: <input type="number" name="col21"><br>
+            LogOfAreas: <input type="number" name="col22"><br>
+            Log_X_Index: <input type="number" name="col23"><br>
+            Log_Y_Index: <input type="number" name="col24"><br>
+            Orientation_Index: <input type="number" name="col25"><br>
+            Luminosity_Index: <input type="number" name="col26"><br>
+            SigmoidOfAreas: <input type="number" name="col27"><br>
+        </form>
+    </div>
+
+    <div class = "submit">
+        <button
+          type="button" onClick="location.href='./result'"> submit
+        </button>
+    </div>
+
+  </body>
+
+  
