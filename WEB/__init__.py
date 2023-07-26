@@ -9,6 +9,6 @@ def create_app():
     app.register_blueprint(binary_views.bp)
     app.register_blueprint(multi_views.bp)
     app.register_blueprint(regression_views.bp)
-    app.register_blueprint(training_views.bp)      
+    app.register_blueprint(training_views.bp)
 
     return app
