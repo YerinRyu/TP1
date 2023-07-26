@@ -11,14 +11,14 @@
   <body>
     <div class="mb-3">
         <!-- 
-        Sex: col1
-        Length: col2
-        Diameter: col3
-        Height: col4
-        Whole weight: col5
-        Shucked weight: col6
-        Viscera weight: col7
-        Shell weight: col8
+        col1: Sex
+        col2: Length
+        col3: Diameter
+        col4: Height
+        col5: Whole weight
+        col6: Shucked weight
+        col7: Viscera weight
+        col8: Shell weight
         -->
 
         <form action="{{ url_for('regression.result') }}" method="post">
@@ -26,22 +26,16 @@
                     <option value="M">M</option>
                     <option value="F">F</option>
                     <option value="I">I</option>
-                </select><br>
-            Length: <input type="number" name="col2"><br>
-            Diameter: <input type="number" name="col3"><br>
-            Height: <input type="number" name="col4"><br>
-            Whole weight: <input type="number" name="col5"><br>
-            Shucked weight: <input type="number" name="col6"><br>
-            Viscera weight: <input type="number" name="col7"><br>
-            Shell weight: <input type="number" name="col8"><br>
-            
+                  </select><br>
+            Length: <input type="number" step = 0.0001 name="col2"><br>
+            Diameter: <input type="number" step = 0.0001 name="col3"><br>
+            Height: <input type="number" step = 0.0001 name="col4"><br>
+            Whole weight: <input type="number" step = 0.0001 name="col5"><br>
+            Shucked weight: <input type="number" step = 0.0001 name="col6"><br>
+            Viscera weight: <input type="number" step = 0.0001 name="col7"><br>
+            Shell weight: <input type="number" step = 0.0001 name="col8"><br>
+            <input type='submit' value='submit'>
         </form>
-    </div>
-
-    <div class = "submit">
-        <button
-          type="button" onClick="location.href='./result'"> submit
-        </button>
     </div>
 
   </body>

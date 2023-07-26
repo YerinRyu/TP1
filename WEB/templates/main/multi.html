@@ -3,9 +3,17 @@
 <!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
 
   <head>
+
+    <style>
+      .file {
+        float: right;
+      }
+    </style>
+
     <hr style= "height: 2px; background-color: #191970;">
     <h1 class="title"> Multi Classification </h1>
     <hr style= "height: 2px; background-color: #191970;">
+    
   </head>
 
   <body>
@@ -40,42 +48,44 @@
             col27: SigmoidOfAreas
         -->
 
-        <form action="{{ url_for('multi.result') }}" method="post">
-            X_Minimum: <input type="number" name="col1"><br>
-            X_Maximum: <input type="number" name="col2"><br>
-            Y_Minimum: <input type="number" name="col3"><br>
-            Y_Maximum: <input type="number" name="col4"><br>
-            Pixels_Areas: <input type="number" name="col5"><br>
-            X_Perimeter: <input type="number" name="col6"><br>
-            Y_Perimeter: <input type="number" name="col7"><br>
-            Sum_of_Luminosity: <input type="number" name="col8"><br>
-            Minimum_of_Luminosity: <input type="number" name="col9"><br>
-            Maximum_of_Luminosity: <input type="number" name="col10"><br>
-            Length_of_Conveyer: <input type="number" name="col11"><br>
-            TypeOfSteel_A300: <input type="number" name="col12"><br>
-            TypeOfSteel_A400: <input type="number" name="col13"><br>
-            Steel_Plate_Thickness: <input type="number" name="col14"><br>
-            Edges_Index: <input type="number" name="col15"><br>
-            Empty_Index: <input type="number" name="col16"><br>
-            Square_Index: <input type="number" name="col17"><br>
-            Outside_X_Index: <input type="number" name="col18"><br>
-            Edges_X_Index: <input type="number" name="col19"><br>
-            Edges_Y_Index: <input type="number" name="col20"><br>
-            Outside_Global_Index: <input type="number" name="col21"><br>
-            LogOfAreas: <input type="number" name="col22"><br>
-            Log_X_Index: <input type="number" name="col23"><br>
-            Log_Y_Index: <input type="number" name="col24"><br>
-            Orientation_Index: <input type="number" name="col25"><br>
-            Luminosity_Index: <input type="number" name="col26"><br>
-            SigmoidOfAreas: <input type="number" name="col27"><br>
+        <form action="{{ url_for('multi.result') }}" method="POST">
+            X_Minimum: <input type="number" step=0.0001 name="col1"><br>
+            X_Maximum: <input type="number" step=0.0001 name="col2"><br>
+            Y_Minimum: <input type="number" step=0.0001 name="col3"><br>
+            Y_Maximum: <input type="number" step=0.0001 name="col4"><br>
+            Pixels_Areas: <input type="number" step=0.0001 name="col5"><br>
+            X_Perimeter: <input type="number" step=0.0001 name="col6"><br>
+            Y_Perimeter: <input type="number" step=0.0001 name="col7"><br>
+            Sum_of_Luminosity: <input type="number" step=0.0001 name="col8"><br>
+            Minimum_of_Luminosity: <input type="number" step=0.0001 name="col9"><br>
+            Maximum_of_Luminosity: <input type="number" step=0.0001 name="col10"><br>
+            Length_of_Conveyer: <input type="number" step=0.0001 name="col11"><br>
+            TypeOfSteel_A300: <input type="number" step=0.0001 name="col12"><br>
+            TypeOfSteel_A400: <input type="number" step=0.0001 name="col13"><br>
+            Steel_Plate_Thickness: <input type="number" step=0.0001 name="col14"><br>
+            Edges_Index: <input type="number" step=0.0001 name="col15"><br>
+            Empty_Index: <input type="number" step=0.0001 name="col16"><br>
+            Square_Index: <input type="number" step=0.0001 name="col17"><br>
+            Outside_X_Index: <input type="number" step=0.0001 name="col18"><br>
+            Edges_X_Index: <input type="number" step=0.0001 name="col19"><br>
+            Edges_Y_Index: <input type="number" step=0.0001 name="col20"><br>
+            Outside_Global_Index: <input type="number" step=0.0001 name="col21"><br>
+            LogOfAreas: <input type="number" step=0.0001 name="col22"><br>
+            Log_X_Index: <input type="number" step=0.0001 name="col23"><br>
+            Log_Y_Index: <input type="number" step=0.0001 name="col24"><br>
+            Orientation_Index: <input type="number" step=0.0001 name="col25"><br>
+            Luminosity_Index: <input type="number" step=0.0001 name="col26"><br>
+            SigmoidOfAreas: <input type="number" step=0.0001 name="col27"><br>
+            <input type='submit' value='submit'>
         </form>
     </div>
 
-    <div class = "submit">
-        <button
-          type="button" onClick="location.href='./result'"> submit
-        </button>
-    </div>
+    <div class = 'file'>
+      <form action="{{ url_for('multi.csv') }}" method="POST">
+        <input type="file" name="csv">
+        <input type="submit">
+      </form>
+    <div>
 
   </body>
 

@@ -25,7 +25,7 @@ col7: Excess kurtosis of the DM-SNR curve
 col8: Skewness of the DM-SNR curve
 '''
 
-@bp.route('/result', methods=['GET'])
+@bp.route('/result', methods=['GET','POST'])
 def result():
     
     data = np.array(np.array([request.form.get("col"+str(i+1)) for i in range(8)]))

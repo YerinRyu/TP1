@@ -11,7 +11,19 @@ bp = Blueprint('regression', __name__, url_prefix='/regression')
 def regression_main():
     return render_template('main/regression.html')
 
-@bp.route('/result', methods=['GET'])
+'''
+col1: Sex
+col2: Length
+col3: Diameter
+col4: Height
+col5: Whole weight
+col6: Shucked weight
+col7: Viscera weight
+col8: Shell weight
+'''
+
+
+@bp.route('/result', methods=['GET','POST'])
 def result():
     
     data = np.array([request.form.get("col"+str(i+1)) for i in range(8)])
