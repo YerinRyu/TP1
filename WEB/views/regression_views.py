@@ -60,6 +60,19 @@ def db_insert_data_regression(date, result, data_list):
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
+
+def get_regression_results():
+    conn = sqlite3.connect(path+'/DB/regression_result.db')
+    c = conn.cursor()
+
+    # 데이터 조회
+    c.execute('SELECT * FROM regression_result')
+
+    results = c.fetchall()
+
+    conn.close()
+
+    return results
     
 # ========================================================================= DB 함수
 
@@ -89,3 +102,11 @@ def result():
     db_insert_data_regression(date, result, data_list)
     
     return render_template('result/regression_result.html', result = result) # result를 html로 보냅니다.
+
+@bp.route('/log')
+def log():
+    
+    results = get_regression_results()
+    
+    return render_template('DB/regression_log.html', results=results)
+    

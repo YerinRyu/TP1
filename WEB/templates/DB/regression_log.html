@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Regression Results log </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+  
+  <body>
+
+<!--
+col1: Sex
+col2: Length
+col3: Diameter
+col4: Height
+col5: Whole weight
+col6: Shucked weight
+col7: Viscera weight
+col8: Shell weight
+''' -->
+
+<body>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <td><B>Id</B></td>
+                <td><B>DATE</B></td>
+                <td><B>RESULT</B></td>
+                <td><b>Sex</b></td>
+                <td><b>Length</b></td>
+                <td><b>Diameter</b></td>
+                <td><b>Height</b></td>
+                <td><b>Whole weight</b></td>
+                <td><b>Shucked weight</b></td>
+                <td><b>Viscera weight</b></td>
+                <td><b>Shell weight</b></td>
+            </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result[0] }}</td>
+                        <td><B>{{ result[1] }}</B></td>
+                        <td><B>{{ result[2] }}</B></td>
+                        <td><b>{{ result[3] }}</b></td>
+                        <td><b>{{ result[4] }}</b></td>
+                        <td><b>{{ result[5] }}</b></td>
+                        <td><b>{{ result[6] }}</b></td>
+                        <td><b>{{ result[7] }}</b></td>
+                        <td><b>{{ result[8] }}</b></td>
+                        <td><b>{{ result[9] }}</b></td>
+                        <td><b>{{ result[10] }}</b></td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
+    </body>
+</html>
+
+

@@ -5,6 +5,7 @@ import joblib
 import os
 import numpy as np
 import sqlite3
+from datetime import datetime
 
 path = os.getcwd()
 
@@ -28,6 +29,7 @@ def init_multi_db():
     # 테이블이 이미 존재하는지 확인하고, 없다면 새로 생성
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS multi_result(
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
                         DATE DATETIME,
                         RESULT CHAR,
                         X_Minimum REAL,
@@ -78,7 +80,7 @@ def db_insert_data_multi(date, result, data_list):
                                 Empty_Index, Square_Index, Outside_X_Index, Edges_X_Index, Edges_Y_Index,
                                 Outside_Global_Index, LogOfAreas, Log_X_Index, Log_Y_Index, Orientation_Index,
                                 Luminosity_Index, SigmoidOfAreas)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     '''
 
     # DATA
@@ -90,6 +92,19 @@ def db_insert_data_multi(date, result, data_list):
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
+
+def get_multi_results():
+    conn = sqlite3.connect(path+'/DB/multi_result.db')
+    c = conn.cursor()
+
+    # 데이터 조회
+    c.execute('SELECT * FROM multi_result')
+
+    results = c.fetchall()
+
+    conn.close()
+
+    return results
 # ========================================================================= DB 함수
 
 
@@ -126,4 +141,12 @@ def csv():
 
     return render_template('result/multi_csv_result.html', result = result) # result를 html로 보냅니다.
 
+# ================ result log
+@bp.route('/log')
+def log():
+    
+    results = get_multi_results()
+    
+    return render_template('DB/multi_log.html', results=results)
+    
 

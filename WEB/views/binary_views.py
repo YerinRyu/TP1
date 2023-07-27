@@ -68,6 +68,19 @@ def db_insert_data_binary(date, result, data_list):
     # Commit the changes and close the connection
     conn.commit()
     conn.close()
+
+def get_binary_results():
+    conn = sqlite3.connect(path+'/DB/binary_result.db')
+    c = conn.cursor()
+
+    # 데이터 조회
+    c.execute('SELECT * FROM binary_result')
+
+    results = c.fetchall()
+
+    conn.close()
+
+    return results
 # ========================================================================= DB 함수
 
 '''
@@ -97,3 +110,10 @@ def result():
     # result = model.predict(data) # = 모델 예측 결과
     
     return render_template('result/binary_result.html', result=result) # result를 html로 보냅니다.
+
+@bp.route('/log')
+def log():
+    
+    results = get_binary_results()
+    
+    return render_template('DB/binary_log.html', results=results)

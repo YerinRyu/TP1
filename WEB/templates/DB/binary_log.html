@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Binary Results log </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+        <!--
+        col1: Mean of the integrated profile
+        col2: Standard deviation of the integrated profile
+        col3: Excess kurtosis of the integrated profile
+        col4: Skewness of the integrated profile
+        col5: Mean of the DM-SNR curve
+        col6: Standard deviation of the DM-SNR curve
+        col7: Excess kurtosis of the DM-SNR curve
+        col8: Skewness of the DM-SNR curve -->
+
+    <body>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <td><B>Id</B></td>
+                    <td><B>DATE</B></td>
+                    <td><B>RESULT</B></td>
+                    <td><b>Mean of the integrated profile</b></td>
+                    <td><b>Standard deviation of the integrated profile</b></td>
+                    <td><b>Excess kurtosis of the integrated profile</b></td>
+                    <td><b>Skewness of the integrated profile</b></td>
+                    <td><b>Mean of the DM-SNR curve</b></td>
+                    <td><b>Standard deviation of the DM-SNR curve</b></td>
+                    <td><b>Excess kurtosis of the DM-SNR curve</b></td>
+                    <td><b>Skewness of the DM-SNR curve </b></td>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result[0] }}</td>
+                            <td>{{ result[1] }}</td>
+                            <td>{{ result[2] }}</td>
+                            <td>{{ result[3] }}</td>
+                            <td>{{ result[4] }}</td>
+                            <td>{{ result[5] }}</td>
+                            <td>{{ result[6] }}</td>
+                            <td>{{ result[7] }}</td>
+                            <td>{{ result[8] }}</td>
+                            <td>{{ result[9] }}</td>
+                            <td>{{ result[10] }}</td>
+                        </tr>
+                    {% endfor %}
+                <tbody>
+            </table>
+        </body>
+</html>

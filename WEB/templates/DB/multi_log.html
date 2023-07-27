@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+  <head>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Multi Results log </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+  </head>
+
+  <body>
+<!--
+  col1: X_Minimum
+  col2: X_Maximum
+  col3: Y_Minimum
+  col4: Y_Maximum
+  col5: Pixels_Areas
+  col6: X_Perimeter
+  col7: Y_Perimeter
+  col8: Sum_of_Luminosity
+  col9: Minimum_of_Luminosity
+  col10: Maximum_of_Luminosity
+  col11: Length_of_Conveyer
+  col12: TypeOfSteel_A300
+  col13: TypeOfSteel_A400
+  col14: Steel_Plate_Thickness
+  col15: Edges_Index
+  col16: Empty_Index
+  col17: Square_Index
+  col18: Outside_X_Index
+  col19: Edges_X_Index
+  col20: Edges_Y_Index
+  col21: Outside_Global_Index
+  col22: LogOfAreas
+  col23: Log_X_Index
+  col24: Log_Y_Index
+  col25: Orientation_Index
+  col26: Luminosity_Index
+  col27: SigmoidOfAreas -->
+
+    <body>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <td><B>Id</B></td>
+                    <td><B>DATE</B></td>
+                    <td><B>RESULT</B></td>
+                    <td><b>X_Minimum</b></td>
+                    <td><b>X_Maximum</b></td>
+                    <td><b>Y_Minimum</b></td>
+                    <td><b>Y_Maximum</b></td>
+                    <td><b>Pixels_Areas</b></td>
+                    <td><b>X_Perimeter</b></td>
+                    <td><b>Y_Perimeter</b></td>
+                    <td><b>Sum_of_Luminosity</b></td>
+                    <td><b>Minimum_of_Luminosity</b></td>
+                    <td><b>Maximum_of_Luminosity</b></td>
+                    <td><b>Length_of_Conveyer</b></td>
+                    <td><b>TypeOfSteel_A300</b></td>
+                    <td><b>TypeOfSteel_A400</b></td>
+                    <td><b>Steel_Plate_Thickness</b></td>
+                    <td><b>Edges_Index</b></td>
+                    <td><b>Empty_Index</b></td>
+                    <td><b>Square_Index</b></td>
+                    <td><b>Outside_X_Index</b></td>
+                    <td><b>Edges_X_Index</b></td>
+                    <td><b>Edges_Y_Index</b></td>
+                    <td><b>Outside_Global_Index</b></td>
+                    <td><b>LogOfAreas</b></td>
+                    <td><b>Log_X_Index</b></td>
+                    <td><b>Log_Y_Index</b></td>
+                    <td><b>Orientation_Index</b></td>
+                    <td><b>Luminosity_Index</b></td>
+                    <td><b>SigmoidOfAreas</b></td>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{ result[0] }}</td>
+                            <td>{{ result[1] }}</td>
+                            <td>{{ result[2] }}</td>
+                            <td>{{ result[3] }}</td>
+                            <td>{{ result[4] }}</td>
+                            <td>{{ result[5] }}</td>
+                            <td>{{ result[6] }}</td>
+                            <td>{{ result[7] }}</td>
+                            <td>{{ result[8] }}</td>
+                            <td>{{ result[9] }}</td>
+                            <td>{{ result[10] }}</td>
+                            <td>{{ result[11] }}</td>
+                            <td>{{ result[12]}}</td>
+                            <td>{{ result[13] }}</td>
+                            <td>{{ result[14] }}</td>
+                            <td>{{ result[15] }}</td>
+                            <td>{{ result[16] }}</td>
+                            <td>{{ result[18] }}</td>
+                            <td>{{ result[19] }}</td>
+                            <td>{{ result[20] }}</td>
+                            <td>{{ result[21] }}</td>
+                            <td>{{ result[22] }}</td>
+                            <td>{{ result[23] }}</td>
+                            <td>{{ result[24] }}</td>
+                            <td>{{ result[25] }}</td>
+                            <td>{{ result[26] }}</td>
+                            <td>{{ result[27] }}</td>
+                            <td>{{ result[28] }}</td>
+                            <td>{{ result[29] }}</td>
+                        </tr>
+                    {% endfor %}
+                <tbody>
+            </table>
+        </body>
+</html>
