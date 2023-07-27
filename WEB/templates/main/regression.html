@@ -1,15 +1,33 @@
 <!doctype html>
 <html>
-<!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 
   <head>
-    <hr style= "height: 2px; background-color: #191970;">
-    <h1 class="title"> Regression </h1>
-    <hr style= "height: 2px; background-color: #191970;">
   </head>
 
   <body>
-    <div class="mb-3">
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Regression </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+
+    <div class='right'>
+      <h3> CSV file upload <h3>
+      <form action="{{ url_for('regression.csv') }}" method="POST">
+        <input type="file" name="csv" class='button1'>
+        <input type="submit" value='submit' class='button2'>
+        <br><br><br>
+      </form>
+
+        <hr>
+        <h3> Show predicted log </h3>
+        <button type="button" onClick="location.href='log'" action="{{ url_for('regression.log') }}" class='button2'>
+          Show predicted log </button>
+        
+        <br><br><br><br><br><hr>
+        <h3> Go Main Page </h3>
+        <button class="button2" type="button" onClick="location.href='../'"> go main page </button>
+    </div>
+
         <!-- 
         col1: Sex
         col2: Length
@@ -20,27 +38,24 @@
         col7: Viscera weight
         col8: Shell weight
         -->
+    <div class="updown"></div>
 
-        <form action="{{ url_for('regression.result') }}" method="post">
-            Sex: <select name="col1">
+    <div class="left"><br>
+        <form action="{{ url_for('regression.result') }}" method="post" class='form'>
+            Sex: <select name="col1" style= "height: 1.3em;">
                     <option value="M">M</option>
                     <option value="F">F</option>
                     <option value="I">I</option>
                   </select><br>
-            Length: <input type="number" step = 0.0001 name="col2"><br>
-            Diameter: <input type="number" step = 0.0001 name="col3"><br>
-            Height: <input type="number" step = 0.0001 name="col4"><br>
-            Whole weight: <input type="number" step = 0.0001 name="col5"><br>
-            Shucked weight: <input type="number" step = 0.0001 name="col6"><br>
-            Viscera weight: <input type="number" step = 0.0001 name="col7"><br>
-            Shell weight: <input type="number" step = 0.0001 name="col8"><br>
-            <input type='submit' value='submit'>
+            Length: <input type="number" step = 0.0001 name="col2" style= "height: 1.3em;"><br>
+            Diameter: <input type="number" step = 0.0001 name="col3" style= "height: 1.3em;"><br>
+            Height: <input type="number" step = 0.0001 name="col4" style= "height: 1.3em;"><br>
+            Whole weight: <input type="number" step = 0.0001 name="col5" style= "height: 1.3em;"><br>
+            Shucked weight: <input type="number" step = 0.0001 name="col6" style= "height: 1.3em;"><br>
+            Viscera weight: <input type="number" step = 0.0001 name="col7" style= "height: 1.3em;"><br>
+            Shell weight: <input type="number" step = 0.0001 name="col8" style= "height: 1.3em;"><br>
+            <br><br><input type='submit' value='submit' class='button2'>
         </form>
     </div>
-
-    <div class = 'file'>
-      <button type="button" onClick="location.href='log'" action="{{ url_for('regression.log') }}">
-        log </button>
-    <div>
-
   </body>
+</html>

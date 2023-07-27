@@ -1,18 +1,16 @@
 <!doctype html>
 <html>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-
-  <head>
-    <hr style= "height: 2px; background-color: #191970;">
-    <h1 class="title"> Main Page </h1>
-    <hr style= "height: 2px; background-color: #191970;">
-  </head>
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 
   <body>
-    <div class="mb-3">
-      <button type="button" onClick="location.href='training'"> training </button>
-      <button type="button" onClick="location.href='regression'"> regression </button>
-      <button type="button" onClick="location.href='binary'"> binary classification </button>
-      <button type="button" onClick="location.href='multi'"> multi calssification </button>
+
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Main Page </h1>
+    <hr style= "height: 2px; background-color: #191970;"><br><br><br>
+
+    <div style="button1">
+      <button type="button" onClick="location.href='regression'" class='button1'> regression </button><br>
+      <button type="button" onClick="location.href='binary'" class='button1'> binary classification </button><br>
+      <button type="button" onClick="location.href='multi'" class='button1'> multi calssification </button>
     </div>
   </body>

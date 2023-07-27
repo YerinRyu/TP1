@@ -126,7 +126,7 @@ def result():
     db_insert_data_multi(date, result, data_list)
 
     # send result to html
-    return render_template('result/multi_result.html', result = result) 
+    return render_template('result/multi_result.html', result = result)
 
 
 # =============== csv file

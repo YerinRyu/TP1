@@ -1,0 +1,54 @@
+
+.button1 {
+    width: 160x;
+    height: 50px;
+    font-weight: 400;
+    font-family: "Helvetica", "Arial", sans-serif;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: block;
+    margin: 10px
+  }
+
+  .button2{
+    float: right;
+    width: 160x;
+    height: 50px;
+    font-weight: 400;
+    font-family: "Helvetica", "Arial", sans-serif;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: block;
+    margin: 10px
+  }
+
+  .form{font-size: 1.2em;}
+
+  div.left {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+  }
+  div.right {
+    width: 49%;
+    float: right;
+    box-sizing: border-box; d
+  }
+
+  .updown {
+    border-left: solid #000;
+    height:100%;
+    left: 50%;
+    position: absolute;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #444444;
+  }

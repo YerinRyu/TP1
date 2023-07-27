@@ -1,14 +1,15 @@
 <!doctype html>
 <html>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 
   <head>
-    <hr style= "height: 2px; background-color: #191970;">
-    <h1 class="title"> Multi Results log </h1>
-    <hr style= "height: 2px; background-color: #191970;">
   </head>
 
   <body>
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Multi Results log </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+
 <!--
   col1: X_Minimum
   col2: X_Maximum
@@ -40,39 +41,68 @@
 
     <body>
         <div>
+            <ul>
+                <li>col1: X_Minimum</li>
+                <li>col2: X_Maximum</li>
+                <li>col3: Y_Minimum</li>
+                <li>col4: Y_Maximum</li>
+                <li>col5: Pixels_Areas</li>
+                <li>col6: X_Perimeter</li>
+                <li>col7: Y_Perimeter</li>
+                <li>col8: Sum_of_Luminosity</li>
+                <li>col9: Minimum_of_Luminosity</li>
+                <li>col10: Maximum_of_Luminosity</li>
+                <li>col11: Length_of_Conveyer</li>
+                <li>col12: TypeOfSteel_A300</li>
+                <li>col13: TypeOfSteel_A400</li>
+                <li>col14: Steel_Plate_Thickness</li>
+                <li>col15: Edges_Index</li>
+                <li>col16: Empty_Index</li>
+                <li>col17: Square_Index</li>
+                <li>col18: Outside_X_Index</li>
+                <li>col19: Edges_X_Index</li>
+                <li>col20: Edges_Y_Index</li>
+                <li>col21: Outside_Global_Index</li>
+                <li>col22: LogOfAreas</li>
+                <li>col23: Log_X_Index</li>
+                <li>col24: Log_Y_Index</li>
+                <li>col25: Orientation_Index</li>
+                <li>col26: Luminosity_Index</li>
+                <li>col27: SigmoidOfAreas</li>
+            </ul>
             <table>
                 <thead>
-                <tr>
+                <tr text-align='center'>
                     <td><B>Id</B></td>
                     <td><B>DATE</B></td>
                     <td><B>RESULT</B></td>
-                    <td><b>X_Minimum</b></td>
-                    <td><b>X_Maximum</b></td>
-                    <td><b>Y_Minimum</b></td>
-                    <td><b>Y_Maximum</b></td>
-                    <td><b>Pixels_Areas</b></td>
-                    <td><b>X_Perimeter</b></td>
-                    <td><b>Y_Perimeter</b></td>
-                    <td><b>Sum_of_Luminosity</b></td>
-                    <td><b>Minimum_of_Luminosity</b></td>
-                    <td><b>Maximum_of_Luminosity</b></td>
-                    <td><b>Length_of_Conveyer</b></td>
-                    <td><b>TypeOfSteel_A300</b></td>
-                    <td><b>TypeOfSteel_A400</b></td>
-                    <td><b>Steel_Plate_Thickness</b></td>
-                    <td><b>Edges_Index</b></td>
-                    <td><b>Empty_Index</b></td>
-                    <td><b>Square_Index</b></td>
-                    <td><b>Outside_X_Index</b></td>
-                    <td><b>Edges_X_Index</b></td>
-                    <td><b>Edges_Y_Index</b></td>
-                    <td><b>Outside_Global_Index</b></td>
-                    <td><b>LogOfAreas</b></td>
-                    <td><b>Log_X_Index</b></td>
-                    <td><b>Log_Y_Index</b></td>
-                    <td><b>Orientation_Index</b></td>
-                    <td><b>Luminosity_Index</b></td>
-                    <td><b>SigmoidOfAreas</b></td>
+                    <td><b>col1</b></td>
+                    <td><b>col2</b></td>
+                    <td><b>col3</b></td>
+                    <td><b>col4</b></td>
+                    <td><b>col5</b></td>
+                    <td><b>col6</b></td>
+                    <td><b>col7</b></td>
+                    <td><b>col8</b></td>
+                    <td><b>col9</b></td>
+                    <td><b>col10</b></td>
+                    <td><b>col11</b></td>
+                    <td><b>col12</b></td>
+                    <td><b>col13</b></td>
+                    <td><b>col14</b></td>
+                    <td><b>col15</b></td>
+                    <td><b>col16</b></td>
+                    <td><b>col17</b></td>
+                    <td><b>col18</b></td>
+                    <td><b>col19</b></td>
+                    <td><b>col20</b></td>
+                    <td><b>col21</b></td>
+                    <td><b>col22</b></td>
+                    <td><b>col23</b></td>
+                    <td><b>col24</b></td>
+                    <td><b>col25</b></td>
+                    <td><b>col26</b></td>
+                    <td><b>col27</b></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,11 +120,12 @@
                             <td>{{ result[9] }}</td>
                             <td>{{ result[10] }}</td>
                             <td>{{ result[11] }}</td>
-                            <td>{{ result[12]}}</td>
+                            <td>{{ result[12] }}</td>
                             <td>{{ result[13] }}</td>
                             <td>{{ result[14] }}</td>
                             <td>{{ result[15] }}</td>
                             <td>{{ result[16] }}</td>
+                            <td>{{ result[17] }}</td>
                             <td>{{ result[18] }}</td>
                             <td>{{ result[19] }}</td>
                             <td>{{ result[20] }}</td>

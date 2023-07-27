@@ -1,15 +1,33 @@
 <!doctype html>
 <html>
-<!-- link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" -->
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 
   <head>
-    <hr style= "height: 2px; background-color: #191970;">
-    <h1 class="title"> Binary Classification </h1>
-    <hr style= "height: 2px; background-color: #191970;">
   </head>
 
   <body>
-    <div class="mb-3">
+    <hr style= "height: 2px; background-color: #191970;">
+    <h1 class="title"> Binary Classification </h1>
+    <hr style= "height: 2px; background-color: #191970;">
+
+    <div class='right'>
+      <h3> CSV file upload <h3>
+      <form action="{{ url_for('binary.csv') }}" method="POST">
+        <input type="file" name="csv" class='button1'>
+        <input type="submit" value='submit' class='button2'>
+        <br><br><br>
+      </form>
+
+        <hr>
+        <h3> Show predicted log </h3>
+        <button type="button" onClick="location.href='log'" action="{{ url_for('binary.log') }}" class='button2'>
+          Show predicted log </button>
+        
+        <br><br><br><br><br><hr>
+        <h3> Go Main Page </h3>
+        <button class="button2" type="button" onClick="location.href='../'"> go main page </button>
+    </div>
+
         <!-- 
           col1: Mean of the integrated profile
           col2: Standard deviation of the integrated profile
@@ -20,17 +38,19 @@
           col7: Excess kurtosis of the DM-SNR curve
           col8: Skewness of the DM-SNR curve
         -->
+      <div class="updown"></div>
 
-        <form action="{{ url_for('binary.result') }}" method="post">
-            Mean of the integrated profile : <input type="number" step = 0.000000001 name="col1"><br>
-            Standard deviation of the integrated profile : <input type="number" step = 0.000000001 name="col2"><br>
-            Excess kurtosis of the integrated profile : <input type="number" step = 0.000000001 name="col3"><br>
-            Skewness of the integrated profile : <input type="number" step = 0.000000001 name="col4"><br>
-            Mean of the DM-SNR curve : <input type="number" step = 0.000000001 name="col5"><br>
-            Standard deviation of the DM-SNR curve : <input type="number" step = 0.000000001 name="col6"><br>
-            Excess kurtosis of the DM-SNR curve : <input type="number" step = 0.000000001 name="col7"><br>
-            Skewness of the DM-SNR curve : <input type="number" step = 0.000000001 name="col8"><br>
-            <input type='submit' value='submit'>
+      <div class="left"><br>
+        <form action="{{ url_for('binary.result') }}" method="post" class='form'>
+            Mean of the integrated profile : <input type="number" step = 0.000000001 name="col1" style= "height: 1.3em;"><br>
+            Standard deviation of the integrated profile : <input type="number" step = 0.000000001 name="col2" style= "height: 1.3em;"><br>
+            Excess kurtosis of the integrated profile : <input type="number" step = 0.000000001 name="col3" style= "height: 1.3em;"><br>
+            Skewness of the integrated profile : <input type="number" step = 0.000000001 name="col4" style= "height: 1.3em;"><br>
+            Mean of the DM-SNR curve : <input type="number" step = 0.000000001 name="col5" style= "height: 1.3em;"><br>
+            Standard deviation of the DM-SNR curve : <input type="number" step = 0.000000001 name="col6" style= "height: 1.3em;"><br>
+            Excess kurtosis of the DM-SNR curve : <input type="number" step = 0.000000001 name="col7" style= "height: 1.3em;"><br>
+            Skewness of the DM-SNR curve : <input type="number" step = 0.000000001 name="col8" style= "height: 1.3em;"><br>
+            <br><br><input type='submit' value='submit' class='button2'>
         </form>
     </div>
   </body>

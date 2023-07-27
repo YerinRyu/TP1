@@ -103,6 +103,19 @@ def result():
     
     return render_template('result/regression_result.html', result = result) # result를 html로 보냅니다.
 
+# =============== csv file
+@bp.route('/result_csv', methods=['GET', 'POST'])
+def csv():
+    
+    data = request.form.get("csv")
+    
+    result = None
+    # scaled_data = scaler.transform(data)
+    # result = model.predict(scaled_data)[0] # = model 예측 결과
+
+    return render_template('result/multi_csv_result.html', result = result) # result를 html로 보냅니다.
+
+# ================ result log
 @bp.route('/log')
 def log():
     
