@@ -1,12 +1,10 @@
 from flask import Blueprint, render_template, request #,url_for
-import pandas as pd
-import numpy as np
-import pickle
-# from werkzeug.utils import redirect
+from datetime import datetime
+import sqlite3
+import os
+import model.binary.binary as bn
 
-model = None
-# with open('../../model','binary') as pickle_file:
-#    model = pickle.load(pickle_file)
+path = os.getcwd()
 
 bp = Blueprint('binary', __name__, url_prefix='/binary')
 
@@ -98,16 +96,14 @@ col8: Skewness of the DM-SNR curve
 def result():
     
     data_list = [request.form.get("col"+str(i+1)) for i in range(8)]
-    data = np.array(data_list)
-    result = 'result'
+    scaled_data = bn.scaler(data_list)
+    result = bn.load_model_and_predict(scaled_data)
     
     # --- code for DB
     date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    init_multi_db()
-    db_insert_data_multi(date, result, data_list)
-    
-    # result = model.predict(data) # = 모델 예측 결과
+    init_binary_db()
+    db_insert_data_binary(date, result, data_list)
     
     return render_template('result/binary_result.html', result=result) # result를 html로 보냅니다.
 

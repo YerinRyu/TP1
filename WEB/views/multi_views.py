@@ -6,14 +6,10 @@ import os
 import numpy as np
 import sqlite3
 from datetime import datetime
+import model.multi.MDNN_Multi_test as mt
 
 path = os.getcwd()
-
-model_file_path = path+"/model/mlp_model_accuracy_0.78.joblib"
-model = joblib.load(model_file_path)
-
-scaler_file_path = path+"/model/mlp_standard_scaler.joblib"
-scaler = joblib.load(scaler_file_path)
+model, scaler, label_mapping = mt.load_model() # model 불러오기
 
 bp = Blueprint('multi', __name__, url_prefix='/multi')
 
@@ -113,11 +109,7 @@ def get_multi_results():
 def result():
     
     data_list = [request.form.get("col"+str(i+1)) for i in range(27)]
-    data = np.array(data_list).reshape(1, -1)
-    scaled_data = scaler.transform(data)
-    
-    # result = result of model predicted
-    result = model.predict(scaled_data)[0]
+    result = mt.predict(data_list, model, scaler, label_mapping)
     
     # --- code for DB
     date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -133,13 +125,14 @@ def result():
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
-    data = request.form.get("csv")
+    csv_file = request.form.get("csv")
+    results = mt.predict_csv(csv_file, model, scaler, label_mapping)
+    # date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    result = None
-    # scaled_data = scaler.transform(data)
-    # result = model.predict(scaled_data)[0] # = model 예측 결과
+    # for row, result in csv_file, results:
+    #    db_insert_data_multi(date, result, row)
 
-    return render_template('result/multi_csv_result.html', result = result) # result를 html로 보냅니다.
+    return render_template('result/multi_csv_result.html', results = results) # result를 html로 보냅니다.
 
 # ================ result log
 @bp.route('/log')
