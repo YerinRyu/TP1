@@ -13,6 +13,10 @@ bp = Blueprint('binary', __name__, url_prefix='/binary')
 def binary_main():
     return render_template('main/binary.html')
 
+@bp.route('/')
+def csv_example():
+    return send_file(path+'/dataset/test_dataset/binary_test.csv')
+
 
 # ========================================================================= DB 함수
 def init_binary_db():
@@ -112,17 +116,21 @@ def result():
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
-    csv_file = request.files['csv']
-    file_path = path+'/dataset/user.csv'
-    csv_file.save(file_path)
+    try:
+        csv_file = request.files['csv']
+        file_path = path+'/dataset/user.csv'
+        csv_file.save(file_path)
+        
+        results = bn.predict_csv(file_path)
+        
+        df = pd.read_csv(file_path)
+        df['result'] = results
+        df.to_csv(file_path)
+        
+        return render_template('result/csv/binary_csv_result.html', results = results)
     
-    results = bn.predict_csv(file_path)
-    
-    df = pd.read_csv(file_path)
-    df['result'] = results
-    df.to_csv(file_path)
-    
-    return render_template('result/csv/binary_csv_result.html', results = results)
+    except:
+        return "파일 형식을 정확히하여 다시 시도하시기 바랍니다."
 
 @bp.route('/result_csv/download')
 def download_csv():

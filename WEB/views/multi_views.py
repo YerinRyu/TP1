@@ -15,6 +15,10 @@ bp = Blueprint('multi', __name__, url_prefix='/multi')
 def multi_main():
     return render_template('main/multi.html')
 
+@bp.route('/')
+def csv_example():
+    return send_file(path+'/dataset/test_dataset/multi_test.csv')
+
 # ========================================================================= DB 함수
 def init_multi_db():
     conn = sqlite3.connect(path+'/DB/multi_result.db')
@@ -119,21 +123,25 @@ def result():
     return render_template('result/multi_result.html', result = result)
 
 
+
 # =============== csv file
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
-    
-    csv_file = request.files['csv']
-    file_path = path+'/dataset/user.csv'
-    csv_file.save(file_path)
-    
-    results = mt.predict_csv(file_path, model, scaler, label_mapping)
-    
-    df = pd.read_csv(file_path)
-    df['result'] = results
-    df.to_csv(file_path)
+    try:
+        csv_file = request.files['csv']
+        file_path = path+'/dataset/user.csv'
+        csv_file.save(file_path)
+        
+        results = mt.predict_csv(file_path, model, scaler, label_mapping)
+        
+        df = pd.read_csv(file_path)
+        df['result'] = results
+        df.to_csv(file_path)
 
-    return render_template('result/csv/multi_csv_result.html', results = results) # result를 html로 보냅니다.
+        return render_template('result/csv/multi_csv_result.html', results = results) # result를 html로 보냅니다.
+
+    except:
+            return "파일 형식을 정확히하여 다시 시도하시기 바랍니다."
 
 @bp.route('/result_csv/download')
 def download_csv():

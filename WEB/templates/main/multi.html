@@ -7,7 +7,7 @@
 
   <body>
     <hr style= "height: 2px; background-color: #191970;">
-    <h1 class="title"> Multi Classification </h1>
+    <h1 class="title"> Multi Classification: Faulty Steel Plates Classification </h1>
     <hr style= "height: 2px; background-color: #191970;">
     
         <!-- 
@@ -46,6 +46,9 @@
             <input type="submit" value='submit' class='button2'>
             <br><br><br>
           </form>
+            <h4>* 주의사항</h4>
+            <p>csv파일을 업로드 할 때는 target값을 제거해야하며, 예시 파일과 같이 feature의 이름과 순서 형식을 정확히해야 올바른 예측 프로세스를 진행할 수 있습니다.</p>
+            예시 파일: <a href="{{ url_for('multi.csv_example') }}">CSV file</a></p>
 
             <hr>
             <h3> Show predicted log </h3>
@@ -53,7 +56,7 @@
               Show predicted log </button>
             
             
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <hr>
             <h3> Go Main Page </h3>
             <button class="button2" type="button" onClick="location.href='../'"> go main page </button>
@@ -67,17 +70,17 @@
         <br>
 
         <form action="{{ url_for('multi.result') }}" method="POST" class='form'>
-            X_Minimum: <input type="number" step=0.0001 name="col1" style= "height: 1.3em;"><br>
-            X_Maximum: <input type="number" step=0.0001 name="col2" style= "height: 1.3em;"><br>
-            Y_Minimum: <input type="number" step=0.0001 name="col3" style= "height: 1.3em;"><br>
-            Y_Maximum: <input type="number" step=0.0001 name="col4" style= "height: 1.3em;"><br>
-            Pixels_Areas: <input type="number" step=0.0001 name="col5" style= "height: 1.3em;"><br>
-            X_Perimeter: <input type="number" step=0.0001 name="col6" style= "height: 1.3em;"><br>
-            Y_Perimeter: <input type="number" step=0.0001 name="col7" style= "height: 1.3em;"><br>
-            Sum_of_Luminosity: <input type="number" step=0.0001 name="col8" style= "height: 1.3em;"><br>
-            Minimum_of_Luminosity: <input type="number" step=0.0001 name="col9" style= "height: 1.3em;"><br>
-            Maximum_of_Luminosity: <input type="number" step=0.0001 name="col10" style= "height: 1.3em;"><br>
-            Length_of_Conveyer: <input type="number" step=0.0001 name="col11" style= "height: 1.3em;"><br>
+            X_Minimum: <input type="number" step=0.0001 name="col1" style= "height: 1.3em;" required><br>
+            X_Maximum: <input type="number" step=0.0001 name="col2" style= "height: 1.3em;" required><br>
+            Y_Minimum: <input type="number" step=0.0001 name="col3" style= "height: 1.3em;" required><br>
+            Y_Maximum: <input type="number" step=0.0001 name="col4" style= "height: 1.3em;" required><br>
+            Pixels_Areas: <input type="number" step=0.0001 name="col5" style= "height: 1.3em;" required><br>
+            X_Perimeter: <input type="number" step=0.0001 name="col6" style= "height: 1.3em;" required><br>
+            Y_Perimeter: <input type="number" step=0.0001 name="col7" style= "height: 1.3em;" required><br>
+            Sum_of_Luminosity: <input type="number" step=0.0001 name="col8" style= "height: 1.3em;" required><br>
+            Minimum_of_Luminosity: <input type="number" step=0.0001 name="col9" style= "height: 1.3em;" required><br>
+            Maximum_of_Luminosity: <input type="number" step=0.0001 name="col10" style= "height: 1.3em;" required><br>
+            Length_of_Conveyer: <input type="number" step=0.0001 name="col11" style= "height: 1.3em;" required><br>
             TypeOfSteel_A300: <select name="col12" style= "height: 1.3em;">
               <option type="number" value="1">1</option>
               <option type="number" value="0">0</option>
@@ -86,25 +89,25 @@
               <option type="number" value="1">1</option>
               <option type="number" value="0">0</option>
               </select><br>
-            Steel_Plate_Thickness: <input type="number" step=0.0001 name="col14" style= "height: 1.3em;"><br>
-            Edges_Index: <input type="number" step=0.0001 name="col15" style= "height: 1.3em;"><br>
-            Empty_Index: <input type="number" step=0.0001 name="col16" style= "height: 1.3em;"><br>
-            Square_Index: <input type="number" step=0.0001 name="col17" style= "height: 1.3em;"><br>
-            Outside_X_Index: <input type="number" step=0.0001 name="col18" style= "height: 1.3em;"><br>
-            Edges_X_Index: <input type="number" step=0.0001 name="col19" style= "height: 1.3em;"><br>
-            Edges_Y_Index: <input type="number" step=0.0001 name="col20" style= "height: 1.3em;"><br>
+            Steel_Plate_Thickness: <input type="number" step=0.0001 name="col14" style= "height: 1.3em;" required><br>
+            Edges_Index: <input type="number" step=0.0001 name="col15" style= "height: 1.3em;" required><br>
+            Empty_Index: <input type="number" step=0.0001 name="col16" style= "height: 1.3em;" required><br>
+            Square_Index: <input type="number" step=0.0001 name="col17" style= "height: 1.3em;" required><br>
+            Outside_X_Index: <input type="number" step=0.0001 name="col18" style= "height: 1.3em;" required><br>
+            Edges_X_Index: <input type="number" step=0.0001 name="col19" style= "height: 1.3em;" required><br>
+            Edges_Y_Index: <input type="number" step=0.0001 name="col20" style= "height: 1.3em;" required><br>
             Outside_Global_Index: <select name="col21" style= "height: 1.3em;">
                   <option type="number" value="1.0">1.0</option>
                   <option type="number" value="0.0">0.0</option>
                   <option type="number" value="0.5">0.5</option>
             </select><br>
 
-            LogOfAreas: <input type="number" step=0.0001 name="col22" style= "height: 1.3em;"><br>
-            Log_X_Index: <input type="number" step=0.0001 name="col23" style= "height: 1.3em;"><br>
-            Log_Y_Index: <input type="number" step=0.0001 name="col24" style= "height: 1.3em;"><br>
-            Orientation_Index: <input type="number" step=0.0001 name="col25" style= "height: 1.3em;"><br>
-            Luminosity_Index: <input type="number" step=0.0001 name="col26" style= "height: 1.3em;"><br>
-            SigmoidOfAreas: <input type="number" step=0.0001 name="col27" style= "height: 1.3em;"><br><br>
+            LogOfAreas: <input type="number" step=0.0001 name="col22" style= "height: 1.3em;" required><br>
+            Log_X_Index: <input type="number" step=0.0001 name="col23" style= "height: 1.3em;" required><br>
+            Log_Y_Index: <input type="number" step=0.0001 name="col24" style= "height: 1.3em;" required><br>
+            Orientation_Index: <input type="number" step=0.0001 name="col25" style= "height: 1.3em;" required><br>
+            Luminosity_Index: <input type="number" step=0.0001 name="col26" style= "height: 1.3em;" required><br>
+            SigmoidOfAreas: <input type="number" step=0.0001 name="col27" style= "height: 1.3em;" required><br><br>
             <input type='submit' value='submit' class='button2'>
         </form>
     </div>
