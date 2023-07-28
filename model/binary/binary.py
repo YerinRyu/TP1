@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import os
 from sklearn.preprocessing import StandardScaler
 import joblib
+import pandas as pd
 
 def get_path():
     path = os.getcwd()
@@ -41,7 +42,7 @@ def scaler(data):
     path = get_path()
     
     scaler_obj = joblib.load(path+'/model/binary/MDNN_binary_Scaler.joblib') 
-    scaled_data = scaled_data = scaler_obj.transform([data])
+    scaled_data = scaler_obj.transform([data])
     
     return scaled_data
 
@@ -58,5 +59,21 @@ def load_model_and_predict(input_data):
         _, predicted = torch.max(output.data, 1)
 
     return predicted.item()
+
+
+def predict_csv(csv_file):
+    path = get_path()
+    data = pd.read_csv(csv_file)
+    
+    scaler = joblib.load(path+'/model/binary/MDNN_binary_Scaler.joblib')
+    scaled_data = scaler.transform(data.values)
+
+    predictions = []
+    for row in scaled_data:
+        row_tensor = torch.tensor(row, dtype=torch.float32).unsqueeze(0)  # Add batch dimension
+        predicted_class = load_model_and_predict(torch.tensor(row_tensor, dtype=torch.float32))
+        predictions.append(predicted_class)
+    
+    return predictions
 
 

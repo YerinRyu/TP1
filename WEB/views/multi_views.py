@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request #,url_for
+from flask import Blueprint, render_template, request, send_file
 # from werkzeug.utils import redirect
 import os
 import sqlite3
 from datetime import datetime
 import model.multi.MDNN_Multi_test as mt
+import pandas as pd
 
 path = os.getcwd()
 model, scaler, label_mapping = mt.load_model() # model 불러오기
@@ -122,14 +123,22 @@ def result():
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
-    csv_file = request.form.get("csv")
-    results = mt.predict_csv(csv_file, model, scaler, label_mapping)
-    # date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    csv_file = request.files['csv']
+    file_path = path+'/dataset/user.csv'
+    csv_file.save(file_path)
     
-    # for row, result in csv_file, results:
-    #    db_insert_data_multi(date, result, row)
+    results = mt.predict_csv(file_path, model, scaler, label_mapping)
+    
+    df = pd.read_csv(file_path)
+    df['result'] = results
+    df.to_csv(file_path)
 
-    return render_template('result/multi_csv_result.html', results = results) # result를 html로 보냅니다.
+    return render_template('result/csv/multi_csv_result.html', results = results) # result를 html로 보냅니다.
+
+@bp.route('/result_csv/download')
+def download_csv():
+    file_path = path+'/dataset/user.csv'
+    return send_file(file_path, as_attachment=True)
 
 # ================ result log
 @bp.route('/log')

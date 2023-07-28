@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request #,url_for
+from flask import Blueprint, render_template, request, send_file
 from datetime import datetime
 import sqlite3
 import os
 import model.binary.binary as bn
+import pandas as pd
 
 path = os.getcwd()
 
@@ -111,13 +112,22 @@ def result():
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
-    data = request.form.get("csv")
+    csv_file = request.files['csv']
+    file_path = path+'/dataset/user.csv'
+    csv_file.save(file_path)
     
-    result = None
-    # scaled_data = scaler.transform(data)
-    # result = model.predict(scaled_data)[0] # = model 예측 결과
+    results = bn.predict_csv(file_path)
+    
+    df = pd.read_csv(file_path)
+    df['result'] = results
+    df.to_csv(file_path)
+    
+    return render_template('result/csv/binary_csv_result.html', results = results)
 
-    return render_template('result/multi_csv_result.html', result = result) # result를 html로 보냅니다.
+@bp.route('/result_csv/download')
+def download_csv():
+    file_path = path+'/dataset/user.csv'
+    return send_file(file_path, as_attachment=True)
 
 # ================ result log
 @bp.route('/log')

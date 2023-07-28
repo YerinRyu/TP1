@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, request #,url_for
-# from werkzeug.utils import redirect
-import numpy as np
+from flask import Blueprint, render_template, request, send_file
+import os
+import sqlite3
+import model.regression.torch_AnnModel1_test as rg
+from datetime import datetime
+import pandas as pd
 
-# with open('../../model','regression') as pickle_file:
-#    model = pickle.load(pickle_file)
+path = os.getcwd()
 
 bp = Blueprint('regression', __name__, url_prefix='/regression')
 
@@ -91,9 +93,7 @@ col8: Shell weight
 def result():
     
     data_list = [request.form.get("col"+str(i+1)) for i in range(8)]
-    data = np.array(data_list)
-    
-    result = 'result' # = model 예측 결과
+    result = rg.load_predict(data_list)
     
     # --- code for DB
     date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -107,13 +107,22 @@ def result():
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
-    data = request.form.get("csv")
+    csv_file = request.files['csv']
+    file_path = path+'/dataset/user.csv'
+    csv_file.save(file_path)
     
-    result = None
-    # scaled_data = scaler.transform(data)
-    # result = model.predict(scaled_data)[0] # = model 예측 결과
+    results = rg.load_predict_csv(file_path)
+    
+    df = pd.read_csv(file_path)
+    df['result'] = results
+    df.to_csv(file_path)
 
-    return render_template('result/multi_csv_result.html', result = result) # result를 html로 보냅니다.
+    return render_template('result/csv/regression_csv_result.html', results = results) # result를 html로 보냅니다.
+
+@bp.route('/result_csv/download')
+def download_csv():
+    file_path = path+'/dataset/user.csv'
+    return send_file(file_path, as_attachment=True)
 
 # ================ result log
 @bp.route('/log')
