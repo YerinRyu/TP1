@@ -40,7 +40,7 @@ class MDNNModel(nn.Module):
 def load_model():
     path = get_path()
     
-    model = MDNNModel(input_size=27, num_classes=9, num_domains=9)  # Make sure these parameters match your model architecture
+    model = MDNNModel(input_size=27, num_classes=7, num_domains=7)  # Make sure these parameters match your model architecture
     model.load_state_dict(torch.load(path+'/model/multi/MDNN_Mulit_Classification.pt'))
     model.eval()
     scaler = load(path+'/model/multi/MDNN_Mulit_Scaler.joblib')
@@ -78,7 +78,7 @@ def predict_csv(csv_file, model, scaler, label_mapping):
     return predicted_labels
 
 
-#예제
+# 예제
 # 모델들 불러오기
 # model, scaler, label_mapping = load_model()
 

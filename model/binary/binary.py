@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import os
-from sklearn.preprocessing import StandardScaler 
-import joblib 
+from sklearn.preprocessing import StandardScaler
+import joblib
 
 def get_path():
     path = os.getcwd()
@@ -58,6 +58,5 @@ def load_model_and_predict(input_data):
         _, predicted = torch.max(output.data, 1)
 
     return predicted.item()
-
 
 
