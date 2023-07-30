@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, send_file
+
 import os
-import sqlite3
-import model.regression.torch_AnnModel1_test as rg
 from datetime import datetime
 import pandas as pd
+
+import model.regression.torch_AnnModel1_test as rg
+from DB.db_module import regression_db as DB
 
 path = os.getcwd()
 
@@ -13,74 +15,9 @@ bp = Blueprint('regression', __name__, url_prefix='/regression')
 def regression_main():
     return render_template('main/regression.html')
 
-@bp.route('/')
+@bp.route('/csv_example_download', methods=['GET'])
 def csv_example():
     return send_file(path+'/dataset/test_dataset/regression_test.csv')
-
-# ========================================================================= DB 함수
-def init_regression_db():
-    conn = sqlite3.connect(path+'/DB/regression_result.db')
-    c = conn.cursor()
-    
-    # 테이블이 이미 존재하는지 확인하고, 없다면 새로 생성
-    create_table_query = '''
-    CREATE TABLE IF NOT EXISTS regression_result(
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        DATE DATETIME,
-                        result REAL,
-                        Sex REAL,
-                        Length REAL,
-                        Diameter REAL,
-                        Height REAL,
-                        Whole_weight REAL,
-                        Shucked_weight REAL,
-                        Viscera_weight REAL,
-                        Shell_weight REAL
-                        )
-    '''
-
-    c.execute(create_table_query)
-
-    conn.commit()
-    conn.close()
-
-def db_insert_data_regression(date, result, data_list):
-    
-    # Connect to the database
-    conn = sqlite3.connect(path+'/DB/regression_result.db')
-    c = conn.cursor()
-
-    # Define the INSERT statement
-    insert_query = '''
-        INSERT INTO regression_result (DATE, result, Sex, Length, Diameter, Height, Whole_weight,
-                                 Shucked_weight, Viscera_weight, Shell_weight)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    '''
-
-    # Prepend the date and result value to the data_list
-    data_list = [date, result] + data_list
-
-    # Execute the INSERT statement with the data
-    c.execute(insert_query, data_list)
-
-    # Commit the changes and close the connection
-    conn.commit()
-    conn.close()
-
-def get_regression_results():
-    conn = sqlite3.connect(path+'/DB/regression_result.db')
-    c = conn.cursor()
-
-    # 데이터 조회
-    c.execute('SELECT * FROM regression_result')
-
-    results = c.fetchall()
-
-    conn.close()
-
-    return results
-    
-# ========================================================================= DB 함수
 
 '''
 col1: Sex
@@ -102,12 +39,12 @@ def result():
     # --- code for DB
     date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
-    init_regression_db()
-    db_insert_data_regression(date, result, data_list)
+    DB.init_regression_db()
+    DB.db_insert_data_regression(date, result, data_list)
     
     return render_template('result/regression_result.html', result = result) # result를 html로 보냅니다.
 
-# =============== csv file
+# csv file
 @bp.route('/result_csv', methods=['GET', 'POST'])
 def csv():
     
@@ -132,11 +69,18 @@ def download_csv():
     file_path = path+'/dataset/user.csv'
     return send_file(file_path, as_attachment=True)
 
-# ================ result log
+# log
 @bp.route('/log')
 def log():
     
-    results = get_regression_results()
+    results = DB.get_regression_results()
     
     return render_template('DB/regression_log.html', results=results)
+
+@bp.route('/log', methods=['GET', 'POST'])
+def delete():
     
+    ids = request.form.getlist('ids')
+    results = DB.regression_delete_result(ids)
+    
+    return render_template('DB/regression_log.html', results=results)

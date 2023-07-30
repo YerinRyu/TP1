@@ -71,8 +71,10 @@
                 <li>col27: SigmoidOfAreas</li>
             </ul>
             <table>
+                <form action="{{ url_for('multi.delete') }}" method="POST">
                 <thead>
                 <tr text-align='center'>
+                    <th>select</th>
                     <td><B>Id</B></td>
                     <td><B>DATE</B></td>
                     <td><B>RESULT</B></td>
@@ -108,6 +110,7 @@
                 <tbody>
                     {% for result in results %}
                         <tr>
+                            <td><input type="checkbox" name="ids" value="{{ result[0] }}"></td>
                             <td>{{ result[0] }}</td>
                             <td>{{ result[1] }}</td>
                             <td>{{ result[2] }}</td>
@@ -142,6 +145,9 @@
                     {% endfor %}
                 <tbody>
             </table>
+            <br>
+            <input type="submit" value="선택 ID 삭제">
+        </form>
         </div>
         <div style="button1">
             <button class="button1" type="button" onClick="location.href='../multi'"> go back </button>

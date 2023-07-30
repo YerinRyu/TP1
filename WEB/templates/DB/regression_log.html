@@ -24,8 +24,10 @@ col8: Shell weight
 <body>
     <div>
         <table>
+            <form action="{{ url_for('regression.delete') }}" method="POST">
             <thead>
             <tr>
+                <td>select</td>
                 <td><B>Id</B></td>
                 <td><B>DATE</B></td>
                 <td><B>RESULT</B></td>
@@ -42,6 +44,7 @@ col8: Shell weight
             <tbody>
                 {% for result in results %}
                     <tr>
+                        <td><input type="checkbox" name="ids" value="{{ result[0] }}"></td>
                         <td>{{ result[0] }}</td>
                         <td><B>{{ result[1] }}</B></td>
                         <td><B>{{ result[2] }}</B></td>
@@ -57,6 +60,9 @@ col8: Shell weight
                 {% endfor %}
             <tbody>
         </table>
+        <br>
+        <input type="submit" value="선택 ID 삭제">
+    </form>
     </div>
     <div style="button1">
         <button class="button1" type="button" onClick="location.href='../regression'"> go back </button>
