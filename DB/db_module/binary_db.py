@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import pandas as pd
 
 path = os.getcwd()
 
@@ -85,3 +86,16 @@ def binary_delete_result(ids):
     conn.close()
     
     return results
+
+
+def log_to_csv():
+    
+    csv_file_path = path + '/dataset/log.csv'
+    conn = sqlite3.connect(path + '/DB/binary_result.db')
+    
+    df = pd.read_sql_query('SELECT * FROM binary_result', conn)
+    conn.close()
+
+    df.to_csv(csv_file_path, index=False)  # CSV 파일로 저장
+
+    return csv_file_path

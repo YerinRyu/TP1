@@ -77,3 +77,8 @@ def delete():
     
     return render_template('DB/multi_log.html', results=results)
 
+@bp.route('/log_download', methods=['GET'])
+def log_file():
+    
+    file_path = DB.log_to_csv()
+    return send_file(file_path, as_attachment=True)

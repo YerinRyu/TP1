@@ -83,4 +83,18 @@ def regression_delete_result(ids):
     
     return results
 
+
+def log_to_csv():
+    
+    csv_file_path = path + '/dataset/log.csv'
+    conn = sqlite3.connect(path + '/DB/regression_result.db')
+    
+    df = pd.read_sql_query('SELECT * FROM regression_result', conn)
+    conn.close()
+
+    df.to_csv(csv_file_path, index=False)  # CSV 파일로 저장
+
+    return csv_file_path
+
+
         

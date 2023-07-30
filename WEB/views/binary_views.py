@@ -85,3 +85,9 @@ def delete():
     results = DB.binary_delete_result(ids)
     
     return render_template('DB/binary_log.html', results=results)
+
+@bp.route('/log_download', methods=['GET'])
+def log_file():
+    
+    file_path = DB.log_to_csv()
+    return send_file(file_path, as_attachment=True)
